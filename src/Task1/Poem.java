@@ -27,7 +27,7 @@ public class Poem {
         String[] newLines = lines;
 
         for (int i = 0; i < newLines.length; i++) {
-            for (int j = 0; j < SAFE_WORDS.length(); j++) {
+            for (int j = 0; j < 3; j++) {
                 if (newLines[i].length() == 0)
                     continue;
                 if (SAFE_WORDS.contains(newLines[i].substring(newLines[i].length() - 1))) {
