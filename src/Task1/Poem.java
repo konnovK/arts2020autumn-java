@@ -1,16 +1,56 @@
 package Task1;
 
 public class Poem {
-    private static String[] strings;
+    private String[] lines;
 
     public Poem(String[] initStrings) {
-        strings = initStrings;
+        lines = initStrings.clone();
     }
 
-    public void check() {
-        for (int i = 0; i < strings.length - 1; i++) {
-            for (int j = i + 1; j < strings.length; j++) {
-                if (strings[i].substring(strings[i].length() - 3).equals(strings[j].substring(strings[j].length() - 3))) {
+    public void checkEasy() {
+        for (int i = 0; i < lines.length - 1; i++) {
+            if (lines[i].length() < 3)
+                continue;
+            for (int j = i + 1; j < lines.length; j++) {
+                if (lines[j].length() < 3)
+                    continue;
+                if (lines[i].substring(lines[i].length() - 3).equals(lines[j].substring(lines[j].length() - 3))) {
+                    System.out.println("строка " + (i + 1) + " рифмуется со строкой " + (j + 1));
+                }
+            }
+        }
+    }
+
+    public void checkHard() {
+        final String SAFE_WORDS = ".,!?; ";
+        final String EYUOAI = "eyuoai";
+        String[] newLines = lines;
+
+        for (int i = 0; i < newLines.length; i++) {
+            for (int j = 0; j < SAFE_WORDS.length(); j++) {
+                char safeWord = SAFE_WORDS.charAt(j);
+                if (newLines[i].length() == 0)
+                    continue;
+                if (newLines[i].substring(newLines[i].length() - 1).equals(Character.toString(safeWord))) {
+                    newLines[i] = newLines[i].substring(0, newLines[i].length() - 1);
+                }
+            }
+        }
+
+        for (int i = 0; i < lines.length - 1; i++) {
+            if (lines[i].length() < 3)
+                continue;
+
+            for (int j = i + 1; j < lines.length; j++) {
+                if (lines[j].length() < 3)
+                    continue;
+
+                int k = newLines[i].length() - 1;
+                int n = newLines[j].length() - 1;
+                while (!EYUOAI.contains(Character.toString(newLines[i].charAt(k))) && k != 0) { k--; }
+                while (!EYUOAI.contains(Character.toString(newLines[j].charAt(n)))  && n != 0) { n--; }
+
+                if (lines[i].substring(k).equals(lines[j].substring(n))) {
                     System.out.println("строка " + (i + 1) + " рифмуется со строкой " + (j + 1));
                 }
             }
