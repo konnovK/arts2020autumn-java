@@ -1,7 +1,7 @@
 package Task1;
 
 public class Poem {
-    private String[] lines;
+    private final String[] lines;
 
     public Poem(String[] initStrings) {
         lines = initStrings.clone();
@@ -28,10 +28,9 @@ public class Poem {
 
         for (int i = 0; i < newLines.length; i++) {
             for (int j = 0; j < SAFE_WORDS.length(); j++) {
-                char safeWord = SAFE_WORDS.charAt(j);
                 if (newLines[i].length() == 0)
                     continue;
-                if (newLines[i].substring(newLines[i].length() - 1).equals(Character.toString(safeWord))) {
+                if (SAFE_WORDS.contains(newLines[i].substring(newLines[i].length() - 1))) {
                     newLines[i] = newLines[i].substring(0, newLines[i].length() - 1);
                 }
             }
