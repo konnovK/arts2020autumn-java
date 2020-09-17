@@ -53,7 +53,7 @@ public class ListTask {
     // 5
     // remove even 2 pure
     public static List<String> task5_2_1(List<String> list) {
-        return list.stream().filter(x -> Integer.parseInt(x) % 2 == 1).collect(Collectors.toList());
+        return list.stream().filter(x -> x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length != x.chars().toArray().length || Integer.parseInt(x) % 2 == 1).collect(Collectors.toList());
     }
 
     // 5
@@ -61,7 +61,7 @@ public class ListTask {
     public static void task5_2_2(List<String> list) {
         var cloneList = new ArrayList<>(list);
         list.clear();
-        list.addAll(cloneList.stream().filter(x -> Integer.parseInt(x) % 2 == 1).collect(Collectors.toList()));
+        list.addAll(cloneList.stream().filter(x -> x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length != x.chars().toArray().length || Integer.parseInt(x) % 2 == 1).collect(Collectors.toList()));
     }
 
     // 5
@@ -121,7 +121,7 @@ public class ListTask {
 
         List<String> l2 = new ArrayList<>();
         l2.add("0");
-        l2.add("1");
+        l2.add("qq");
         l2.add("2");
         l2.add("3");
         l2.add("4");
