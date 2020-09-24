@@ -78,7 +78,8 @@ public class ListTask {
         list.addAll(cloneList.stream().filter(x -> x % 2 == 1).collect(Collectors.toList()));
     }
 
-    public static void t6(String path) {
+    // files
+    public static void task6(String path) {
         HashSet<String> hashSet = new HashSet<>();
         LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
         TreeSet<String> treeSet = new TreeSet<>();
@@ -144,6 +145,6 @@ public class ListTask {
         task5_3_2(l3);
         System.out.println(l3);
 
-        t6("task2text.txt");
+        task6("task2text.txt");
     }
 }
