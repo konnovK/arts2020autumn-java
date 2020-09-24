@@ -16,8 +16,7 @@ public class ListTask {
     // 2
     // concat
     public static List<Object> task2(List<Object> list1, List<Object> list2) {
-        List<Object> res = new ArrayList<>();
-        res.addAll(list1);
+        List<Object> res = new ArrayList<>(list1);
         res.addAll(list2);
         return res;
     }
@@ -40,20 +39,31 @@ public class ListTask {
     // remove even 1 pure
     public static List<String> task5_1_1(List<String> list) {
         var res = new ArrayList<>(list);
-        for (int i = 0; i < res.size(); i++) res.remove(i);
+        for (int i = 0; i < res.size(); i++) {
+            res.remove(i);
+        }
         return res;
     }
 
     // 5
     // remove even 1
     public static void task5_1_2(List<String> list) {
-        for (int i = 0; i < list.size(); i++) list.remove(i);
+        for (int i = 0; i < list.size(); i++) {
+            list.remove(i);
+        }
     }
 
     // 5
     // remove even 2 pure
     public static List<String> task5_2_1(List<String> list) {
-        return list.stream().filter(x -> x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length != x.chars().toArray().length || Integer.parseInt(x) % 2 == 1).collect(Collectors.toList());
+        return list.stream()
+                .filter(x -> {
+                            return  (x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length
+                                    != x.chars().toArray().length)
+                                    || Integer.parseInt(x) % 2 == 1;
+                        }
+                )
+                .collect(Collectors.toList());
     }
 
     // 5
@@ -61,7 +71,16 @@ public class ListTask {
     public static void task5_2_2(List<String> list) {
         var cloneList = new ArrayList<>(list);
         list.clear();
-        list.addAll(cloneList.stream().filter(x -> x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length != x.chars().toArray().length || Integer.parseInt(x) % 2 == 1).collect(Collectors.toList()));
+        list.addAll(
+                cloneList.stream()
+                        .filter(x -> {
+                                return (x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length
+                                        != x.chars().toArray().length)
+                                        || Integer.parseInt(x) % 2 == 1;
+                            }
+                        )
+                        .collect(Collectors.toList())
+        );
     }
 
     // 5
@@ -107,8 +126,12 @@ public class ListTask {
     }
 
     public static void main(String[] args) {
+        System.out.println("###\nTASK 1:");
         System.out.println(task1());
+        System.out.println("###\nTASK 2:");
         System.out.println(task2(List.of(1,2,3), List.of(4,5,6)));
+        System.out.println("###\nTASK 4:");
+        System.out.println("-- 4_1:");
         System.out.println(task4_1(List.of(1,2,3,4,5)));
 
         List<Object> l = new ArrayList<>();
@@ -117,6 +140,7 @@ public class ListTask {
         l.add(3);
         l.add(4);
         l.add(5);
+        System.out.println("-- 4_2:");
         task4_2(l);
         System.out.println(l);
 
@@ -127,10 +151,16 @@ public class ListTask {
         l2.add("3");
         l2.add("4");
         l2.add("5");
+        System.out.println("###\nTASK 5:");
+        System.out.println("-- 5_1_1\nafter:");
         System.out.println(task5_1_1(l2));
+        System.out.println("before:");
         System.out.println(l2);
+        System.out.println("-- 5_2_1\nafter:");
         System.out.println(task5_2_1(l2));
+        System.out.println("before:");
         System.out.println(l2);
+        System.out.println("-- 5_2_2");
         task5_2_2(l2);
         System.out.println(l2);
 
@@ -141,10 +171,15 @@ public class ListTask {
         l3.add(3);
         l3.add(4);
         l3.add(5);
+        System.out.println("-- 5_3_1\nafter:");
         System.out.println(task5_3_1(l3));
+        System.out.println("before:");
+        System.out.println(l3);
+        System.out.println("-- 5_3_2");
         task5_3_2(l3);
         System.out.println(l3);
 
-        task6("task2text.txt");
+//        System.out.println("###\nTASK 6:");
+//        task6("task2text.txt");
     }
 }
