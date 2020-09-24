@@ -57,11 +57,18 @@ public class ListTask {
     // remove even 2 pure
     public static List<String> task5_2_1(List<String> list) {
         return list.stream()
-                .filter(x -> {
-                            return  (x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length
-                                    != x.chars().toArray().length)
-                                    || Integer.parseInt(x) % 2 == 1;
-                        }
+                .filter(x ->
+                        (
+                            x.chars()
+                                .map(c -> (char) c)
+                                .filter(Character::isDigit)
+                                .toArray()
+                                .length
+                        !=
+                            x.chars()
+                                .toArray()
+                                .length
+                        ) || Integer.parseInt(x) % 2 == 1
                 )
                 .collect(Collectors.toList());
     }
@@ -73,11 +80,18 @@ public class ListTask {
         list.clear();
         list.addAll(
                 cloneList.stream()
-                        .filter(x -> {
-                                return (x.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length
-                                        != x.chars().toArray().length)
-                                        || Integer.parseInt(x) % 2 == 1;
-                            }
+                        .filter(x ->
+                                (
+                                    x.chars()
+                                        .map(c -> (char) c)
+                                        .filter(Character::isDigit)
+                                        .toArray()
+                                        .length
+                                !=
+                                    x.chars()
+                                        .toArray()
+                                        .length
+                                ) || Integer.parseInt(x) % 2 == 1
                         )
                         .collect(Collectors.toList())
         );
