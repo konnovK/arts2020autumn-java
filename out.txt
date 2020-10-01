@@ -1,0 +1,7 @@
+Dopolnitelnoe uslozhnennoe ZADANIE.
+Dan fail S tekstom na russkom, vyvesti V drugoi fail tot zhe tekst, no latinskimi bukvami.
+Prosledite, chto esli slovo bylo S zaglavnoi bukvy, to I rezultat transliteratsii dolzhen byt S zaglavnoi.
+Esli slovo sostoit tolko iz zaglavnykh bukv, pri etom ono imeet khotia by dve bukvy, to I rezultat dolzhen sostoiat tolko iz zaglavnykh bukv.
+Vse znaki prepinaniia I probely mezhdu slovami dolzhny ostatsia bez izmenenii.
+Podoidet li java.util.Scanner dlia etoi zadachi?
+ 
