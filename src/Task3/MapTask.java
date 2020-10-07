@@ -1,7 +1,5 @@
 package Task3;
 
-import Task2.ListTask;
-
 import java.io.File;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
