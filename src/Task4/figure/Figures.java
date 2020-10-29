@@ -1,4 +1,4 @@
-package Task4;
+package Task4.figure;
 
 public class Figures {
     public static void main(String[] args) {

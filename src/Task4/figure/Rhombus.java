@@ -1,4 +1,4 @@
-package Task4;
+package Task4.figure;
 
 public class Rhombus extends Parallelogram {
 

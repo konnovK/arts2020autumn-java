@@ -1,4 +1,4 @@
-package Task4;
+package Task4.figure;
 
 public abstract class Parallelogram implements Figure {
     protected double a;

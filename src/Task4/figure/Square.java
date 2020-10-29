@@ -1,4 +1,4 @@
-package Task4;
+package Task4.figure;
 
 public class Square extends Rectangle {
     public Square(double a) {
