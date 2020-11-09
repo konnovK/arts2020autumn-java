@@ -3,6 +3,7 @@ package Task4.figure;
 public class Figures {
     public static void main(String[] args) {
         Figure[] fs = new Figure[6];
+
         fs[0] = new Circle(10);
         fs[1] = new Rectangle(3,4);
         fs[2] = new Square(4);

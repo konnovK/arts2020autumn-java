@@ -2,7 +2,6 @@ package Task4.figure;
 
 public class Rhombus extends Parallelogram {
 
-
     private final double d1;
     private final double d2;
 
@@ -12,7 +11,6 @@ public class Rhombus extends Parallelogram {
         this.d1 = d1;
         this.d2 = d2;
     }
-
 
     @Override
     public double area() {
