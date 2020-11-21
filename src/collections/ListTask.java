@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 public class ListTask {
 
-    public static void printList(List<Object> list) {
+    public static <T> void printList(List<T> list) {
         System.out.println("элементов в списке: " + list.size());
 
         for (Object o : list) {
@@ -15,7 +15,7 @@ public class ListTask {
         }
     }
 
-    public static void printListWithIndices(List<Object> list) {
+    public static <T> void printListWithIndices(List<T> list) {
         System.out.println("элементов в списке: " + list.size());
 
         int i = 1;
@@ -30,19 +30,19 @@ public class ListTask {
     }
 
 
-    public static <T> List<T> concat_(List<T> list1, List<T> list2) {
+    public static <T> List<T> concat(List<T> list1, List<T> list2) {
         List<T> res = new ArrayList<>(list1);
         res.addAll(list2);
         return res;
     }
 
-    public static List<Object> reverse(List<Object> list) {
-        List<Object> res = new ArrayList<>(list);
+    public static <T> List<T> reverse(List<T> list) {
+        List<T> res = new ArrayList<>(list);
         Collections.reverse(res);
         return res;
     }
 
-    public static void reverse_(List<Object> list) {
+    public static <T> void reverse_(List<T> list) {
         Collections.reverse(list);
     }
 
@@ -138,24 +138,31 @@ public class ListTask {
     }
 
     public static void main(String[] args) {
+        printList(List.of("abc", "xyz", "ooo"));
+        System.out.println("###");
         printListWithIndices(List.of("abc", "xyz", "ooo"));
 
-        System.out.println("###\nTASK 1:");
+        System.out.println("###\nlist 1 to 100:");
         System.out.println(list1to100());
-        System.out.println("###\nTASK 2:");
-        var qq = ListTask.<Integer>concat_(List.of(1,2,3), List.of(4,5,6));
-        System.out.println(qq);
-        System.out.println("###\nTASK 4:");
-        System.out.println("-- 4_1:");
-        System.out.println(reverse(List.of(1,2,3,4,5)));
 
-        List<Object> l = new ArrayList<>();
-        l.add(1);
-        l.add(2);
-        l.add(3);
-        l.add(4);
-        l.add(5);
-        System.out.println("-- 4_2:");
+        System.out.println("###\nconcat:");
+        var concatList = concat(List.of(1,2,3), List.of(4,5,6));
+        var concatList2 = concat(List.of("qq", "ww", "ee"), List.of("rr"));
+        System.out.println(concatList);
+        System.out.println(concatList.get(0).getClass());
+        System.out.println(concatList2);
+        System.out.println(concatList2.get(0).getClass());
+
+        System.out.println("###\nreverse:");
+        System.out.println("- pure f:");
+        System.out.println(reverse(List.of(1,2,3,4,5)));
+        System.out.println("- in place f:");
+        List<String> l = new ArrayList<>();
+        l.add("1");
+        l.add("2");
+        l.add("3");
+        l.add("4");
+        l.add("5");
         reverse_(l);
         System.out.println(l);
 
@@ -166,16 +173,16 @@ public class ListTask {
         l2.add("3");
         l2.add("4");
         l2.add("5");
-        System.out.println("###\nTASK 5:");
-        System.out.println("-- 5_1_1\nafter:");
+        System.out.println("###\nkill even:");
+        System.out.println("- 1 pure f\nafter:");
         System.out.println(removeEven1(l2));
         System.out.println("before:");
         System.out.println(l2);
-        System.out.println("-- 5_2_1\nafter:");
+        System.out.println("- 2 pure f\nafter:");
         System.out.println(removeEven2(l2));
         System.out.println("before:");
         System.out.println(l2);
-        System.out.println("-- 5_2_2");
+        System.out.println("- 2 in place f");
         removeEven2_(l2);
         System.out.println(l2);
 
@@ -186,15 +193,15 @@ public class ListTask {
         l3.add(3);
         l3.add(4);
         l3.add(5);
-        System.out.println("-- 5_3_1\nafter:");
+        System.out.println("- 3 pure f\nafter:");
         System.out.println(removeEven3(l3));
         System.out.println("before:");
         System.out.println(l3);
-        System.out.println("-- 5_3_2");
+        System.out.println("- 3 in place f");
         removeEven3_(l3);
         System.out.println(l3);
 
-//        System.out.println("###\nTASK 6:");
-//        files("task2text.txt");
+        System.out.println("###\nset of words:");
+        files("task2text.txt");
     }
 }
