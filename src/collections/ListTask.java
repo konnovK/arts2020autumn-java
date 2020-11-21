@@ -30,8 +30,8 @@ public class ListTask {
     }
 
 
-    public static List<Object> concat(List<Object> list1, List<Object> list2) {
-        List<Object> res = new ArrayList<>(list1);
+    public static <T> List<T> concat_(List<T> list1, List<T> list2) {
+        List<T> res = new ArrayList<>(list1);
         res.addAll(list2);
         return res;
     }
@@ -143,7 +143,8 @@ public class ListTask {
         System.out.println("###\nTASK 1:");
         System.out.println(list1to100());
         System.out.println("###\nTASK 2:");
-        System.out.println(concat(List.of(1,2,3), List.of(4,5,6)));
+        var qq = ListTask.<Integer>concat_(List.of(1,2,3), List.of(4,5,6));
+        System.out.println(qq);
         System.out.println("###\nTASK 4:");
         System.out.println("-- 4_1:");
         System.out.println(reverse(List.of(1,2,3,4,5)));
