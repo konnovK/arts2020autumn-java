@@ -7,19 +7,19 @@ import java.util.stream.Stream;
 
 public class ListTask {
 
-    public static <T> void printList(List<T> list) {
+    public static void printList(List<?> list) {
         System.out.println("элементов в списке: " + list.size());
 
-        for (Object o : list) {
+        for (var o : list) {
             System.out.println(o);
         }
     }
 
-    public static <T> void printListWithIndices(List<T> list) {
+    public static void printListWithIndices(List<?> list) {
         System.out.println("элементов в списке: " + list.size());
 
-        int i = 1;
-        for (Object o : list) {
+        int i = 0;
+        for (var o : list) {
             System.out.println(i++ + ": " + o);
         }
     }
@@ -42,7 +42,7 @@ public class ListTask {
         return res;
     }
 
-    public static <T> void reverse_(List<T> list) {
+    public static void reverse_(List<?> list) {
         Collections.reverse(list);
     }
 
