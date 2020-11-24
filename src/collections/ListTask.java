@@ -115,11 +115,11 @@ public class ListTask {
         LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
         TreeSet<String> treeSet = new TreeSet<>();
         try(Scanner scanner = new Scanner(new File(path))) {
-            for (String str : scanner.tokens().collect(Collectors.toList())) {
+            scanner.tokens().forEach((str) -> {
                 hashSet.add(str);
                 linkedHashSet.add(str);
                 treeSet.add(str);
-            }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
