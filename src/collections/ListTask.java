@@ -30,7 +30,7 @@ public class ListTask {
     }
 
 
-    public static <T> List<T> concat(List<T> list1, List<T> list2) {
+    public static <T, T1 extends T, T2 extends T> List<T> concat(List<T1> list1, List<T2> list2) {
         List<T> res = new ArrayList<>(list1);
         res.addAll(list2);
         return res;
@@ -147,7 +147,7 @@ public class ListTask {
 
         System.out.println("###\nconcat:");
         var concatList = concat(List.of(1,2,3), List.of(4,5,6));
-        var concatList2 = concat(List.of("qq", "ww", "ee"), List.of("rr"));
+        var concatList2 = concat(List.of("qq", "ww", "ee"), List.of(2));
         System.out.println(concatList);
         System.out.println(concatList.get(0).getClass());
         System.out.println(concatList2);
