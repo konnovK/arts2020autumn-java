@@ -30,7 +30,7 @@ public class ListTask {
     }
 
 
-    public static <T, T1 extends T, T2 extends T> List<T> concat(List<T1> list1, List<T2> list2) {
+    public static <T> List<T> concat(List<T> list1, List<T> list2) {
         List<T> res = new ArrayList<>(list1);
         res.addAll(list2);
         return res;
