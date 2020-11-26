@@ -2,6 +2,7 @@ package collections;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -9,19 +10,14 @@ public class ListTask {
 
     public static void printList(List<?> list) {
         System.out.println("элементов в списке: " + list.size());
-
-        for (var o : list) {
-            System.out.println(o);
-        }
+        list.forEach(System.out::println);
     }
+
 
     public static void printListWithIndices(List<?> list) {
         System.out.println("элементов в списке: " + list.size());
-
-        int i = 0;
-        for (var o : list) {
-            System.out.println(i++ + ": " + o);
-        }
+        AtomicInteger i = new AtomicInteger();
+        list.forEach((e) -> System.out.println(i.getAndIncrement() + ": " + e));
     }
 
 
@@ -30,21 +26,24 @@ public class ListTask {
     }
 
 
-    public static <T> List<T> concat(List<T> list1, List<T> list2) {
+    public static <T> List<T> concat(List<? extends T> list1, List<? extends T> list2) {
         List<T> res = new ArrayList<>(list1);
         res.addAll(list2);
         return res;
     }
 
-    public static <T> List<T> reverse(List<T> list) {
-        List<T> res = new ArrayList<>(list);
+
+    public static List<?> reverse(List<?> list) {
+        var res = new ArrayList<>(list);
         Collections.reverse(res);
         return res;
     }
 
+
     public static void reverse_(List<?> list) {
         Collections.reverse(list);
     }
+
 
     public static List<String> removeEven1(List<String> list) {
         var res = new ArrayList<>(list);
@@ -54,11 +53,13 @@ public class ListTask {
         return res;
     }
 
+
     public static void removeEven1_(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
             list.remove(i);
         }
     }
+
 
     public static List<String> removeEven2(List<String> list) {
         return list.stream()
@@ -77,6 +78,7 @@ public class ListTask {
                 )
                 .collect(Collectors.toList());
     }
+
 
     public static void removeEven2_(List<String> list) {
         var cloneList = new ArrayList<>(list);
@@ -100,15 +102,18 @@ public class ListTask {
         );
     }
 
+
     public static List<Integer> removeEven3(List<Integer> list) {
         return list.stream().filter(x -> x % 2 == 1).collect(Collectors.toList());
     }
+
 
     public static void removeEven3_(List<Integer> list) {
         var cloneList = new ArrayList<>(list);
         list.clear();
         list.addAll(cloneList.stream().filter(x -> x % 2 == 1).collect(Collectors.toList()));
     }
+
 
     public static void files(String path) {
         HashSet<String> hashSet = new HashSet<>();
@@ -136,6 +141,7 @@ public class ListTask {
             System.out.println(str);
         }
     }
+
 
     public static void main(String[] args) {
         printList(List.of("abc", "xyz", "ooo"));
