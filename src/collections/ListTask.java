@@ -33,8 +33,8 @@ public class ListTask {
     }
 
 
-    public static List<?> reverse(List<?> list) {
-        var res = new ArrayList<>(list);
+    public static <T> List<T> reverse(List<T> list) {
+        List<T> res = new ArrayList<>(list);
         Collections.reverse(res);
         return res;
     }
