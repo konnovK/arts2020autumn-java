@@ -129,17 +129,11 @@ public class ListTask {
             e.printStackTrace();
         }
 
-        for (String str: hashSet) {
-            System.out.println(str);
-        }
-        System.out.println("##########################");
-        for (String str: linkedHashSet) {
-            System.out.println(str);
-        }
-        System.out.println("##########################");
-        for (String str: treeSet) {
-            System.out.println(str);
-        }
+        hashSet.forEach(System.out::println);
+        System.out.println();
+        linkedHashSet.forEach(System.out::println);
+        System.out.println();
+        treeSet.forEach(System.out::println);
     }
 
 
