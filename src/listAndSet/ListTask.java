@@ -47,17 +47,17 @@ public class ListTask {
 
     public static List<String> removeEven1(List<String> list) {
         var res = new ArrayList<>(list);
-        for (int i = 0; i < res.size(); i++) {
-            res.remove(i);
-        }
+        Stream.iterate(0, x -> x + 1).limit((res.size() / 2) + 1).forEach(i -> {
+            if (i < res.size()) res.remove((int) i);
+        });
         return res;
     }
 
 
     public static void removeEven1_(List<String> list) {
-        for (int i = 0; i < list.size(); i++) {
-            list.remove(i);
-        }
+        Stream.iterate(0, x -> x + 1).limit((list.size() / 2) + 1).forEach(i -> {
+            if (i < list.size()) list.remove((int) i);
+        });
     }
 
 
