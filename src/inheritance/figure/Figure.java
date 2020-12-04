@@ -1,6 +1,8 @@
 package inheritance.figure;
 
-public interface Figure {
+import inheritance.printable.Printable;
+
+public interface Figure extends Printable {
 
     double area();
 
@@ -14,5 +16,16 @@ public interface Figure {
 
     default double capacity2() {
         return this.area() / (this.perimeter() * this.perimeter());
+    }
+
+    @Override
+    default void print() {
+        System.out.println(
+                this.info() +
+                        "\narea: " + this.area() +
+                        "\nperimeter: " + this.perimeter() +
+                        "\ncapacity1: " + Figure.capacity1(this) +
+                        "\ncapacity2: " + this.capacity2() + "\n###"
+        );
     }
 }
