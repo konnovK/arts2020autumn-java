@@ -21,7 +21,7 @@ public interface Figure extends Printable {
     @Override
     default void print() {
         System.out.println(
-                this.info() +
+                        this.info() +
                         "\narea: " + this.area() +
                         "\nperimeter: " + this.perimeter() +
                         "\ncapacity1: " + Figure.capacity1(this) +
