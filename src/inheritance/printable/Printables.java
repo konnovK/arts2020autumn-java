@@ -1,7 +1,8 @@
 package inheritance.printable;
 
-public class Printables {
+import java.util.Arrays;
 
+public class Printables {
     public static void main(String[] args) {
         Printable[] ps = new Printable[4];
 
@@ -15,8 +16,6 @@ public class Printables {
         };
         ps[3] = () -> System.out.println("qqq");
 
-        for (Printable p : ps) {
-            p.print();
-        }
+        Arrays.stream(ps).forEach(Printable::print);
     }
 }

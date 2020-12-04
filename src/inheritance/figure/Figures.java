@@ -1,5 +1,7 @@
 package inheritance.figure;
 
+import java.util.Arrays;
+
 public class Figures {
     public static void main(String[] args) {
         Figure[] fs = new Figure[6];
@@ -11,14 +13,14 @@ public class Figures {
         fs[4] = new RegularTriangle(1);
         fs[5] = new RightTriangle(3,4);
 
-        for (Figure f : fs) {
-            System.out.println(
-                    f.info() +
-                    "\narea: " + f.area() +
-                    "\nperimeter: " + f.perimeter() +
-                    "\ncapacity1: " + Figure.capacity1(f) +
-                    "\ncapacity2: " + f.capacity2() + "\n###"
-            );
-        }
+        Arrays.stream(fs).forEach(f ->
+                System.out.println(
+                        f.info() +
+                        "\narea: " + f.area() +
+                        "\nperimeter: " + f.perimeter() +
+                        "\ncapacity1: " + Figure.capacity1(f) +
+                        "\ncapacity2: " + f.capacity2() + "\n###"
+                )
+        );
     }
 }
