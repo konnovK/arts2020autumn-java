@@ -1,4 +1,4 @@
-package collections;
+package listAndSet;
 
 import java.io.File;
 import java.util.*;
