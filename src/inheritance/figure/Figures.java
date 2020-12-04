@@ -13,14 +13,16 @@ public class Figures {
         fs[4] = new RegularTriangle(1);
         fs[5] = new RightTriangle(3,4);
 
-        Arrays.stream(fs).forEach(f ->
-                System.out.println(
-                        f.info() +
+        Arrays.stream(fs).forEach(Figures::printInfo);
+    }
+
+    private static void printInfo(Figure f) {
+        System.out.println(
+                f.info() +
                         "\narea: " + f.area() +
                         "\nperimeter: " + f.perimeter() +
                         "\ncapacity1: " + Figure.capacity1(f) +
                         "\ncapacity2: " + f.capacity2() + "\n###"
-                )
         );
     }
 }
