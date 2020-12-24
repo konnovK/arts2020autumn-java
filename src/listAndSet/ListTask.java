@@ -63,27 +63,27 @@ public class ListTask {
 
 
     public static List<String> removeEven2(List<String> list) {
-        return list.stream().filter(ListTask::isNotEvenNumber).collect(Collectors.toList());
+        return list.stream().filter(isNotEvenNumber).collect(Collectors.toList());
     }
 
 
     public static void removeEven2_(List<String> list) {
         var cloneList = new ArrayList<>(list);
         list.clear();
-        list.addAll(cloneList.stream().filter(ListTask::isNotEvenNumber).collect(Collectors.toList()));
+        list.addAll(cloneList.stream().filter(isNotEvenNumber).collect(Collectors.toList()));
     }
 
 
-    private static boolean isNotEvenNumber(String str) {
+    // тот порядок размещения полей и методов в классе нарушен, чтобы поле было ближе к методам, в которых используется
+    private static final Predicate<String> isNotEvenNumber = str -> {
         var isNumber = new Predicate<String>() {
             @Override
             public boolean test(String str) {
                 return str.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length == str.length();
             }
         };
-
         return !isNumber.test(str) || Integer.parseInt(str) % 2 == 1;
-    }
+    };
 
 
     public static List<Integer> removeEven3(List<Integer> list) {
