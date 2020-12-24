@@ -76,12 +76,7 @@ public class ListTask {
 
     // тот порядок размещения полей и методов в классе нарушен, чтобы поле было ближе к методам, в которых используется
     private static final Predicate<String> isNotEvenNumber = str -> {
-        var isNumber = new Predicate<String>() {
-            @Override
-            public boolean test(String str) {
-                return str.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length == str.length();
-            }
-        };
+        Predicate<String> isNumber = str1 -> str1.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length == str1.length();
         return !isNumber.test(str) || Integer.parseInt(str) % 2 == 1;
     };
 
