@@ -3,6 +3,7 @@ package listAndSet;
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -62,44 +63,26 @@ public class ListTask {
 
 
     public static List<String> removeEven2(List<String> list) {
-        return list.stream()
-                .filter(x ->
-                        (
-                            x.chars()
-                                .map(c -> (char) c)
-                                .filter(Character::isDigit)
-                                .toArray()
-                                .length
-                        !=
-                            x.chars()
-                                .toArray()
-                                .length
-                        ) || Integer.parseInt(x) % 2 == 1
-                )
-                .collect(Collectors.toList());
+        return list.stream().filter(ListTask::isNotEvenNumber).collect(Collectors.toList());
     }
 
 
     public static void removeEven2_(List<String> list) {
         var cloneList = new ArrayList<>(list);
         list.clear();
-        list.addAll(
-                cloneList.stream()
-                        .filter(x ->
-                                (
-                                    x.chars()
-                                        .map(c -> (char) c)
-                                        .filter(Character::isDigit)
-                                        .toArray()
-                                        .length
-                                !=
-                                    x.chars()
-                                        .toArray()
-                                        .length
-                                ) || Integer.parseInt(x) % 2 == 1
-                        )
-                        .collect(Collectors.toList())
-        );
+        list.addAll(cloneList.stream().filter(ListTask::isNotEvenNumber).collect(Collectors.toList()));
+    }
+
+
+    private static boolean isNotEvenNumber(String str) {
+        var isNumber = new Predicate<String>() {
+            @Override
+            public boolean test(String str) {
+                return str.chars().map(c -> (char) c).filter(Character::isDigit).toArray().length == str.length();
+            }
+        };
+
+        return !isNumber.test(str) || Integer.parseInt(str) % 2 == 1;
     }
 
 
