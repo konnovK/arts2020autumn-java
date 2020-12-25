@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Dictionaries {
     public static void main(String[] args) {
@@ -54,19 +55,17 @@ public class Dictionaries {
         System.out.println("#");
 
 
-        // полный поиск (медленно, только для 10-ти)
+        // полный поиск (медленно)
         try (
                 Scanner scanner = new Scanner(new File(FULL_TEXT_SEARCH_QUERIES));
                 PrintStream ps = new PrintStream("./outFullTextQueries.txt", StandardCharsets.UTF_8)
         ) {
-            scanner.tokens().limit(10).forEach(word ->
-                    map.keySet().stream()
-                            .filter(key -> key.contains(word.toLowerCase().trim()))
-                            .forEach(key -> {
-                                String translation = map.getOrDefault(key.toLowerCase(), null);
-                                if (translation != null) ps.print(word + ": " + translation);
-                            })
-            );
+            var parts = scanner.tokens().collect(Collectors.toSet());
+            var keys = map.keySet();
+            var keys_ = new HashSet<String>(keys);
+            parts.forEach(part -> keys_.removeIf(key_ -> key_.contains(part)));
+            keys.removeAll(keys_);
+            map.forEach((k,v) -> ps.print(k + ": " + v));
         } catch (IOException ignored) {
         }
     }
